@@ -95,7 +95,7 @@ public:
                 cout << "<--------- Old Records --------->" << endl
                      << endl;
                 cout << "Name: " << vec[i].getName() << endl;
-                cout << "RollNo: " << vec[i].getRollNo() << endl;
+                cout << "Roll No: " << vec[i].getRollNo() << endl;
                 cout << "Branch: " << vec[i].getBranch() << endl
                      << endl;
                 cout << "<--------- Update --------->" << endl
@@ -128,13 +128,31 @@ public:
             cout << "\n******** No student found with Roll No: " << rn << " ************" << endl;
         }
     }
+
+     void deleteStudent(){
+        if(vec.empty()){cout << "\n********* NO DATA TO DELETE **********" << endl << endl; return;}
+        int rn;
+        cout << "Enter the Roll No of Student: ";
+        cin >> rn;
+        bool found = false;
+        for(int i = 0; i < vec.size(); i++){
+            if(rn == vec[i].getRollNo()){
+                vec.erase(vec.begin() + i);
+                found = true;
+                cout << "\n <--------------- Student with Roll No " << rn << " is removed ------------>" << endl << endl;
+            }
+        }
+        if(!found){
+            cout << "********* STUDENT NOT FOUND ************" << endl;
+        }
+    }
 };
 int main()
 {
     College college;
     string fisrtName, lastName, Branch;
     int RollNo;
-    cout << "\n*********** College Management System ************" << endl
+    cout << "\n*********** Student Management System ************" << endl
          << endl;
     int value;
     while (true)
@@ -142,6 +160,7 @@ int main()
         cout << "Enter 1 for add student:" << endl;
         cout << "Enter 2 for display students:" << endl;
         cout << "Enter 3 for update record:" << endl;
+        cout << "Enter 4 for delete record:" << endl;
         cout << "Enter 0 for exit from program:" << endl
              << endl;
         cout << "Enter Choice: ";
@@ -189,6 +208,11 @@ int main()
         {
             system("cls");
             college.update();
+        }
+        else if (value == 4)
+        {
+            system("cls");
+            college.deleteStudent();
         }
         else if (value == 0)
         {
